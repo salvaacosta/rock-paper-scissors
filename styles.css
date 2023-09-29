@@ -1,0 +1,40 @@
+.rock {
+    background-color: #58575e;
+   
+}
+
+.button {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 40px;
+    border: none;
+}
+
+.paper {
+    background-color: rgb(204, 158, 72);
+   
+
+}
+
+.scissors {
+    background-color: rgb(219, 14, 31);
+}
+
+.option-container {
+    display: flex;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 600px;
+    flex-direction: column;
+}
+.inactive {
+    display: none;
+}

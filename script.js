@@ -1,19 +1,66 @@
-function getUserChoices(){
-    let userChoice = prompt("Choose Rock, Paper or Scissors");
-    userChoice = userChoice.toLowerCase();
-    return userChoice;
+const startRestartBtn = document.querySelector('.start-restart');
+startRestartBtn.addEventListener('click',tryAgain);
+
+    let userPoints = 0;
+    let computerPoints = 0;
+    let gamePlays = 0;
+    let point;
+    let play;
+
+function tryAgain() {
+    parcialResult.textContent = "";
+    finalResult.textContent = "";
+    userPoints = 0;
+    computerPoints = 0;
+    point = 0;
+    play = 0;
+    startRestartBtn.classList.add('inactive');
+    rock.addEventListener('click', selectRock);
+    paper.addEventListener('click', selectPaper);
+    scissors.addEventListener('click', selectScissors); 
+}  
+let userChoice;
+let rock = document.querySelector('.rock');
+let paper = document.querySelector('.paper');
+let scissors = document.querySelector('.scissors');
+const parcialResult = document.querySelector('#parcial-result');
+const finalResult = document.querySelector('#final-result');
+
+
+
+
+rock.addEventListener('click', selectRock);
+paper.addEventListener('click', selectPaper);
+scissors.addEventListener('click', selectScissors);
+
+
+function selectRock() {
+    playGame("rock");
+}
+
+function selectPaper() {
+    playGame("paper");
+}
+
+function selectScissors() {
+    playGame("scissors");
 }
 
 
-function getComputerChoice(){
+
+function playGame(choice) {
+            
+    userChoice = choice;
+    function getComputerChoice(){
         let options = ["paper","rock","scissors"];
         let i = Math.floor(Math.random() * 3);
         let choose = options[i];
         return choose;
     }
- 
-    let userPoints = 0;
-    let computerPoints = 0;
+
+    
+    let computerChoice = getComputerChoice();   
+
 
     function addUserPoints() {
         point = userPoints + 1;
@@ -25,56 +72,113 @@ function getComputerChoice(){
         computerPoints = point;
     }
 
+    function addGamePlays(){
+        let play = gamePlays + 1;
+        gamePlays = play;
+    }
 
-for (let i = 0; i < 5; i++) {
+
+    if (gamePlays == 4) {
+
+        rock.removeEventListener('click', selectRock);
+        paper.removeEventListener('click', selectPaper);
+        scissors.removeEventListener('click', selectScissors);
+
+
+
+
+        if ((userChoice == "rock") && (computerChoice == "scissors")) {
+            parcialResult.textContent = `Computer choice: ${computerChoice}. You WON!!`;
+            addUserPoints();
+            addGamePlays();
     
-    userChoice = getUserChoices();
-    let computerChoice = getComputerChoice();   
+        }
+    
+        else if ((userChoice == "paper") && (computerChoice == "rock")) {
+            parcialResult.textContent = `Computer choice: ${computerChoice}. You WON!!`;
+            addUserPoints();
+            addGamePlays();
+        }
+    
+        else if ((userChoice == "scissors") && (computerChoice == "paper")) {
+            parcialResult.textContent = `Computer choice: ${computerChoice}. You WON!!`;
+            addUserPoints();
+            addGamePlays();
+        }
+    
+        else if (userChoice == computerChoice){
+            parcialResult.textContent = `Computer choice: ${computerChoice}. DRAW`;
+            addGamePlays();
+        }
+        
+        else {
+            parcialResult.textContent = `Computer choice: ${computerChoice}. You LOOSE!!`;
+            addComputerPoints();
+            addGamePlays();
+        }
 
-    if (userChoice !== "rock" && userChoice !== "paper" && userChoice !== "scissors"){
-        console.log("Wrong option");
+        gamePlays = 0;
+        startRestartBtn.textContent = "Try Again";
+        startRestartBtn.classList.remove('inactive');
+
+    
+        if (userPoints == computerPoints) {
+        finalResult.textContent = `User Points: ${userPoints}. Computer Points: ${computerPoints}. DRAW`;
+        
+
+    }   
+    
+    else if (userPoints > computerPoints) {
+        finalResult.textContent = `User Points: ${userPoints}. Computer Points: ${computerPoints}. YOU ARE A WINNER!!`
+    
+    }
+    
+    else { 
+        finalResult.textContent = `User Points: ${userPoints}. Computer Points: ${computerPoints}. YOU ARE A LOOSER!!`
+    
+    }
+    
     }
 
     else if ((userChoice == "rock") && (computerChoice == "scissors")) {
-        console.log(`Computer choice: ${computerChoice}. You WON!!`);
+        parcialResult.textContent = `Computer choice: ${computerChoice}. You WON!!`;
         addUserPoints();
+        addGamePlays();
 
     }
 
     else if ((userChoice == "paper") && (computerChoice == "rock")) {
-        console.log(`Computer choice: ${computerChoice}. You WON!!`);
+        parcialResult.textContent = `Computer choice: ${computerChoice}. You WON!!`;
         addUserPoints();
+        addGamePlays();
     }
 
     else if ((userChoice == "scissors") && (computerChoice == "paper")) {
-        console.log(`Computer choice: ${computerChoice}. You WON!!`);
+        parcialResult.textContent = `Computer choice: ${computerChoice}. You WON!!`;
         addUserPoints();
+        addGamePlays();
     }
 
     else if (userChoice == computerChoice){
-        console.log(`Computer choice: ${computerChoice}. TIE`)
+        parcialResult.textContent = `Computer choice: ${computerChoice}. DRAW`;
+        addGamePlays();
     }
     
     else {
-        console.log(`Computer choice: ${computerChoice}. You LOOSE!!`);
+        parcialResult.textContent = `Computer choice: ${computerChoice}. You LOOSE!!`;
         addComputerPoints();
+        addGamePlays();
     }
 
-}
-
-if (userPoints == computerPoints) {
-    console.log(`User Points: ${userPoints}. Computer Points: ${computerPoints}. TIE`)
-}
-
-else if (userPoints > computerPoints) {
-    console.log(`User Points: ${userPoints}. Computer Points: ${computerPoints}. YOU ARE A WINNER!!`)
-
-}
-
-else { 
-    console.log(`User Points: ${userPoints}. Computer Points: ${computerPoints}. YOU ARE A LOOSER!!`)
-
-}
-
     
+
+}
+
+
+
+
+
+
+
+
 
