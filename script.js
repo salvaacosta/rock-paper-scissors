@@ -6,6 +6,8 @@ startRestartBtn.addEventListener('click',tryAgain);
     let gamePlays = 0;
     let point;
     let play;
+    
+    
 
 function tryAgain() {
     parcialResult.textContent = "";
@@ -49,6 +51,7 @@ function selectScissors() {
 
 
 function playGame(choice) {
+    let round = gamePlays + 1;
             
     userChoice = choice;
     function getComputerChoice(){
@@ -88,37 +91,37 @@ function playGame(choice) {
 
 
         if ((userChoice == "rock") && (computerChoice == "scissors")) {
-            parcialResult.textContent = `Computer choice: ${computerChoice}. You WON!!`;
+            parcialResult.textContent = `ROUND: ${round} Computer choice: ${computerChoice}. You WON!!`;
             addUserPoints();
             addGamePlays();
     
         }
     
         else if ((userChoice == "paper") && (computerChoice == "rock")) {
-            parcialResult.textContent = `Computer choice: ${computerChoice}. You WON!!`;
+            parcialResult.textContent = `ROUND: ${round} Computer choice: ${computerChoice}. You WON!!`;
             addUserPoints();
             addGamePlays();
         }
     
         else if ((userChoice == "scissors") && (computerChoice == "paper")) {
-            parcialResult.textContent = `Computer choice: ${computerChoice}. You WON!!`;
+            parcialResult.textContent = `ROUND: ${round} Computer choice: ${computerChoice}. You WON!!`;
             addUserPoints();
             addGamePlays();
         }
     
         else if (userChoice == computerChoice){
-            parcialResult.textContent = `Computer choice: ${computerChoice}. DRAW`;
+            parcialResult.textContent = `ROUND: ${round} Computer choice: ${computerChoice}. DRAW`;
             addGamePlays();
         }
         
         else {
-            parcialResult.textContent = `Computer choice: ${computerChoice}. You LOOSE!!`;
+            parcialResult.textContent = `ROUND: ${round} Computer choice: ${computerChoice}. You LOOSE!!`;
             addComputerPoints();
             addGamePlays();
         }
 
         gamePlays = 0;
-        startRestartBtn.textContent = "Try Again";
+        startRestartBtn.textContent = "Play Again";
         startRestartBtn.classList.remove('inactive');
 
     
@@ -141,31 +144,31 @@ function playGame(choice) {
     }
 
     else if ((userChoice == "rock") && (computerChoice == "scissors")) {
-        parcialResult.textContent = `Computer choice: ${computerChoice}. You WON!!`;
+        parcialResult.textContent = `ROUND: ${round} Computer choice: ${computerChoice}. You WON!!`;
         addUserPoints();
         addGamePlays();
 
     }
 
     else if ((userChoice == "paper") && (computerChoice == "rock")) {
-        parcialResult.textContent = `Computer choice: ${computerChoice}. You WON!!`;
+        parcialResult.textContent = `ROUND: ${round} Computer choice: ${computerChoice}. You WON!!`;
         addUserPoints();
         addGamePlays();
     }
 
     else if ((userChoice == "scissors") && (computerChoice == "paper")) {
-        parcialResult.textContent = `Computer choice: ${computerChoice}. You WON!!`;
+        parcialResult.textContent = `ROUND: ${round} Computer choice: ${computerChoice}. You WON!!`;
         addUserPoints();
         addGamePlays();
     }
 
     else if (userChoice == computerChoice){
-        parcialResult.textContent = `Computer choice: ${computerChoice}. DRAW`;
+        parcialResult.textContent = `ROUND: ${round} Computer choice: ${computerChoice}. DRAW`;
         addGamePlays();
     }
     
     else {
-        parcialResult.textContent = `Computer choice: ${computerChoice}. You LOOSE!!`;
+        parcialResult.textContent = `ROUND: ${round} Computer choice: ${computerChoice}. You LOOSE!!`;
         addComputerPoints();
         addGamePlays();
     }
